@@ -6,12 +6,25 @@ import { DESTINATIONS } from '../data/destinations';
 export const CompareModal: React.FC = () => {
   const { compareOpen, setCompareOpen, savedIds, filters, formatCurrency, getComputedCost, setActiveDestination } = useTrip();
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setCompareOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setCompareOpen]);
+
   if (!compareOpen) return null;
 
   const compareDestinations = DESTINATIONS.filter(d => savedIds.includes(d.id)).slice(0, 3);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-xl animate-in fade-in duration-200">
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label="Side-by-Side Trip Comparison Matrix"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-xl animate-in fade-in duration-200"
+    >
       <div className="relative w-full max-w-5xl glass-modal rounded-3xl p-6 border border-white/15 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
         
         {/* Header */}
@@ -28,6 +41,7 @@ export const CompareModal: React.FC = () => {
 
           <button
             onClick={() => setCompareOpen(false)}
+            aria-label="Close comparison matrix"
             className="p-2 rounded-full bg-white/5 text-gray-400 hover:text-white"
           >
             <X className="w-5 h-5" />

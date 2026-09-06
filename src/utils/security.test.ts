@@ -16,6 +16,18 @@ describe('Security Utility Module', () => {
       expect(clean).not.toContain('onerror');
     });
 
+    it('should strip javascript pseudo-protocols', () => {
+      const malicious = 'javascript:alert("hacked")';
+      const clean = sanitizeInput(malicious);
+      expect(clean).not.toContain('javascript:');
+    });
+
+    it('should strip all surrounding HTML tags', () => {
+      const htmlString = '<h1>Title</h1><p>Body</p>';
+      const clean = sanitizeInput(htmlString);
+      expect(clean).toBe('TitleBody');
+    });
+
     it('should truncate strings exceeding maximum length', () => {
       const longInput = 'A'.repeat(300);
       const clean = sanitizeInput(longInput, 50);

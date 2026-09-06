@@ -51,6 +51,14 @@ export const DestinationDetailModal: React.FC = () => {
   const [newPeriod, setNewPeriod] = useState<'Friday Night' | 'Saturday Morning' | 'Saturday Afternoon' | 'Saturday Evening' | 'Sunday Morning' | 'Sunday Afternoon'>('Saturday Afternoon');
   const [newCategory, setNewCategory] = useState<ActivityCategory>('hidden_gem');
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveDestination(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setActiveDestination]);
+
   if (!activeDestination) return null;
 
   const dest = activeDestination;
@@ -109,12 +117,23 @@ export const DestinationDetailModal: React.FC = () => {
   const packedCount = packingItems.filter(p => p.checked).length;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-xl animate-in fade-in duration-200">
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${dest.title} 48-Hour Weekend Itinerary`}
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-xl animate-in fade-in duration-200"
+    >
       <div className="relative w-full max-w-4xl glass-modal rounded-3xl overflow-hidden border border-white/15 shadow-2xl flex flex-col max-h-[92vh]">
         
         {/* Top Sticky Header Banner */}
         <div className="relative h-64 sm:h-72 w-full overflow-hidden shrink-0">
-          <img src={dest.heroImage} alt={dest.title} className="w-full h-full object-cover" />
+          <img 
+            src={dest.heroImage} 
+            alt={dest.title} 
+            loading="lazy" 
+            decoding="async" 
+            className="w-full h-full object-cover" 
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-black/60" />
 
           {/* Close & Header Action Controls */}
@@ -132,6 +151,7 @@ export const DestinationDetailModal: React.FC = () => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => toggleSaveDestination(dest.id)}
+                aria-label={isSaved ? 'Remove from saved trips' : 'Save trip'}
                 className={`p-2.5 rounded-full backdrop-blur-md transition-all ${
                   isSaved ? 'bg-amber-500 text-gray-950 shadow-lg scale-105' : 'bg-black/50 text-white hover:bg-black/80 border border-white/20'
                 }`}
@@ -141,6 +161,7 @@ export const DestinationDetailModal: React.FC = () => {
 
               <button
                 onClick={() => setShareDestination(dest)}
+                aria-label="Share getaway itinerary pass"
                 className="p-2.5 rounded-full bg-black/50 text-white hover:bg-black/80 backdrop-blur-md border border-white/20 transition-all"
               >
                 <Share2 className="w-4 h-4" />
@@ -148,6 +169,7 @@ export const DestinationDetailModal: React.FC = () => {
 
               <button
                 onClick={() => setActiveDestination(null)}
+                aria-label="Close itinerary details"
                 className="p-2.5 rounded-full bg-black/50 text-white hover:bg-rose-500 backdrop-blur-md border border-white/20 transition-all"
               >
                 <X className="w-4 h-4" />

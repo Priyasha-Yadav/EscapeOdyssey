@@ -48,14 +48,25 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({ destination })
 
   return (
     <div 
+      role="button"
+      tabIndex={0}
+      aria-label={`View 48-hour itinerary for ${destination.title}`}
       onClick={() => setActiveDestination(destination)}
-      className="group relative rounded-3xl glass-panel glass-panel-hover overflow-hidden flex flex-col cursor-pointer border border-white/10"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setActiveDestination(destination);
+        }
+      }}
+      className="group relative rounded-3xl glass-panel glass-panel-hover overflow-hidden flex flex-col cursor-pointer border border-white/10 focus:outline-none focus:ring-2 focus:ring-emerald-400"
     >
       {/* Top Image Stack */}
       <div className="relative h-64 w-full overflow-hidden bg-gray-900">
         <img
           src={destination.gallery[currentImageIndex] || destination.heroImage}
           alt={destination.title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
 
