@@ -1,12 +1,16 @@
 {
-  "name": "frontend-odessy",
+  "name": "escape-weekend-planner",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "ESCAPE — Next-Gen 48-Hour Weekend Trip Planner & Discovery Engine",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Sparkles, Check, AlertCircle } from 'lucide-react';
-import { sound } from '../utils/sound';
-import { isValidEmail, sanitizeInput } from '../utils/security';
+import { sound } from '../../../utils/sound';
+import { isValidEmail, sanitizeInput } from '../../../utils/security';
 
 export const NewsletterSection: React.FC = () => {
   const [email, setEmail] = useState('');

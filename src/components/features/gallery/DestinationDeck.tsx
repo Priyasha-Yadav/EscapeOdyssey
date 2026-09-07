@@ -10,8 +10,8 @@ import {
   RotateCcw,
   ArrowRight
 } from 'lucide-react';
-import { useTrip } from '../context/TripContext';
-import { sound } from '../utils/sound';
+import { useTrip } from '../../../hooks/useTrip';
+import { sound } from '../../../utils/sound';
 
 export const DestinationDeck: React.FC = () => {
   const { filteredDestinations, filters, savedIds, toggleSaveDestination, setActiveDestination, getComputedCost, formatCurrency } = useTrip();

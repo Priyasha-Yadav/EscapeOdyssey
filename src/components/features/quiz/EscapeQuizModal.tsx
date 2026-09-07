@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { X, Sparkles, ArrowRight, Mountain, Waves, Wine, Building2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { useTrip } from '../context/TripContext';
-import type { Destination, QuizAnswer } from '../types';
+import { useTrip } from '../../../hooks/useTrip';
+import type { Destination, QuizAnswer } from '../../../types';
 
 export const EscapeQuizModal: React.FC = () => {
   const { quizOpen, setQuizOpen, handleQuizComplete, setActiveDestination } = useTrip();
@@ -24,7 +24,7 @@ export const EscapeQuizModal: React.FC = () => {
         spread: 70,
         origin: { y: 0.6 }
       });
-    } catch (e) {
+    } catch {
       // fallback silent
     }
   };

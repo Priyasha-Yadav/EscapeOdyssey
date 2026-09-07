@@ -1,7 +1,8 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { TripProvider, useTrip } from './TripContext';
+import { TripProvider } from './TripContext';
+import { useTrip } from '../hooks/useTrip';
 
 const wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <TripProvider>{children}</TripProvider>

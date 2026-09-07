@@ -1,6 +1,6 @@
 import React from 'react';
 import { Star, Quote, MessageSquare } from 'lucide-react';
-import { TESTIMONIALS } from '../data/destinations';
+import { TESTIMONIALS } from '../../../data/destinations';
 
 export const TestimonialsSection: React.FC = () => {
   return (

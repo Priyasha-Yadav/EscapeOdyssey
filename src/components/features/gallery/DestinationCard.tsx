@@ -11,8 +11,8 @@ import {
   ChevronRight,
   Sparkles
 } from 'lucide-react';
-import type { Destination } from '../types';
-import { useTrip } from '../context/TripContext';
+import type { Destination } from '../../../types';
+import { useTrip } from '../../../hooks/useTrip';
 
 interface DestinationCardProps {
   destination: Destination;

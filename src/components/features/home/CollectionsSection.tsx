@@ -1,8 +1,8 @@
 import React from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import { CURATED_COLLECTIONS } from '../data/destinations';
-import { useTrip } from '../context/TripContext';
-import type { MoodTag } from '../types';
+import { CURATED_COLLECTIONS } from '../../../data/destinations';
+import { useTrip } from '../../../hooks/useTrip';
+import type { MoodTag } from '../../../types';
 
 export const CollectionsSection: React.FC = () => {
   const { setFilters } = useTrip();

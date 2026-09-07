@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Copy, Check, QrCode, Compass, Sparkles } from 'lucide-react';
-import { useTrip } from '../context/TripContext';
+import { useTrip } from '../../../hooks/useTrip';
 
 export const ShareModal: React.FC = () => {
   const { shareDestination, setShareDestination, filters, getComputedCost } = useTrip();

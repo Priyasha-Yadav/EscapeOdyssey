@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Sparkles, Star, Clock, Sun, ArrowRight, Layers } from 'lucide-react';
-import { useTrip } from '../context/TripContext';
-import { DESTINATIONS } from '../data/destinations';
+import { useTrip } from '../../../hooks/useTrip';
+import { DESTINATIONS } from '../../../data/destinations';
 
 export const CompareModal: React.FC = () => {
   const { compareOpen, setCompareOpen, savedIds, filters, formatCurrency, getComputedCost, setActiveDestination } = useTrip();

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { MapPin, Navigation, Star, Clock, ArrowRight } from 'lucide-react';
-import { useTrip } from '../context/TripContext';
-import { TRAVEL_HUBS } from '../data/destinations';
-import type { Destination } from '../types';
+import { useTrip } from '../../../hooks/useTrip';
+import { TRAVEL_HUBS } from '../../../data/destinations';
+import type { Destination } from '../../../types';
 
 export const MapView: React.FC = () => {
   const { filteredDestinations, filters, setActiveDestination } = useTrip();

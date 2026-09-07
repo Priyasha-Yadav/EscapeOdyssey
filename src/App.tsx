@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { TripProvider, useTrip } from './context/TripContext';
-import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { DestinationCard } from './components/DestinationCard';
-import { DestinationDeck } from './components/DestinationDeck';
-import { MapView } from './components/MapView';
-import { AboutSection } from './components/AboutSection';
-import { CollectionsSection } from './components/CollectionsSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { FaqSection } from './components/FaqSection';
-import { NewsletterSection } from './components/NewsletterSection';
+import { TripProvider } from './context/TripContext';
+import { useTrip } from './hooks/useTrip';
+import { Navbar } from './components/layout/Navbar';
+import { HeroSection } from './components/features/hero/HeroSection';
+import { DestinationCard } from './components/features/gallery/DestinationCard';
+import { DestinationDeck } from './components/features/gallery/DestinationDeck';
+import { MapView } from './components/features/gallery/MapView';
+import { AboutSection } from './components/features/home/AboutSection';
+import { CollectionsSection } from './components/features/home/CollectionsSection';
+import { TestimonialsSection } from './components/features/home/TestimonialsSection';
+import { FaqSection } from './components/features/home/FaqSection';
+import { NewsletterSection } from './components/features/home/NewsletterSection';
 import { DestinationDetailModal } from './components/DestinationDetailModal';
-import { EscapeQuizModal } from './components/EscapeQuizModal';
-import { SavedTripsDrawer } from './components/SavedTripsDrawer';
-import { ShareModal } from './components/ShareModal';
-import { CompareModal } from './components/CompareModal';
+import { EscapeQuizModal } from './components/features/quiz/EscapeQuizModal';
+import { SavedTripsDrawer } from './components/features/saved/SavedTripsDrawer';
+import { ShareModal } from './components/features/share/ShareModal';
+import { CompareModal } from './components/features/compare/CompareModal';
+import { ErrorBoundary } from './components/ui/ErrorBoundary';
 import { Compass, Shield, Globe, Code2, Layers, ArrowRight } from 'lucide-react';
 
 const MainContent: React.FC = () => {
@@ -23,19 +25,16 @@ const MainContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#07090E] text-gray-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-gray-950">
-      
       {/* Header Navbar */}
       <Navbar onOpenSavedDrawer={() => setSavedDrawerOpen(true)} />
 
       {/* Main Body Content */}
       <main className="flex-1 pb-24">
-        
         {/* Hero & Interactive Controller */}
         <HeroSection />
 
         {/* View Mode Content Container */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-          
           {filters.viewMode === 'grid' && (
             <div>
               {filteredDestinations.length === 0 ? (
@@ -57,7 +56,6 @@ const MainContent: React.FC = () => {
           {filters.viewMode === 'deck' && <DestinationDeck />}
 
           {filters.viewMode === 'map' && <MapView />}
-
         </section>
 
         {/* SECTION 2: How EscapeOdyssey Works (About) */}
@@ -94,7 +92,6 @@ const MainContent: React.FC = () => {
             </div>
           </div>
         )}
-
       </main>
 
       {/* Modals & Drawers */}
@@ -133,15 +130,16 @@ const MainContent: React.FC = () => {
           </div>
         </div>
       </footer>
-
     </div>
   );
 };
 
 export default function App() {
   return (
-    <TripProvider>
-      <MainContent />
-    </TripProvider>
+    <ErrorBoundary>
+      <TripProvider>
+        <MainContent />
+      </TripProvider>
+    </ErrorBoundary>
   );
 }

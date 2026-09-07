@@ -1,9 +1,8 @@
-/// <reference types="@testing-library/jest-dom" />
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { TripProvider } from '../context/TripContext';
-import { DestinationCard } from './DestinationCard';
+import { DestinationCard } from '../components/features/gallery/DestinationCard';
 import { DESTINATIONS } from '../data/destinations';
 
 describe('DestinationCard Component Suite', () => {

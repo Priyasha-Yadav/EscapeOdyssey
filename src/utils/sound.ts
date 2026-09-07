@@ -37,7 +37,7 @@ class SoundEngine {
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.05);
-    } catch (e) {
+    } catch {
       // silent fallback
     }
   }
@@ -63,7 +63,37 @@ class SoundEngine {
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.1);
-    } catch (e) {
+    } catch {
+      // silent fallback
+    }
+  }
+
+  public playWhoosh() {
+    this.playSwipe();
+  }
+
+  public playChime() {
+    if (!this.enabled) return;
+    this.initCtx();
+    if (!this.ctx) return;
+
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1760, this.ctx.currentTime + 0.15);
+
+      gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.15);
+    } catch {
       // silent fallback
     }
   }
@@ -92,7 +122,7 @@ class SoundEngine {
         osc.start(this.ctx.currentTime + idx * 0.08);
         osc.stop(this.ctx.currentTime + idx * 0.08 + 0.3);
       });
-    } catch (e) {
+    } catch {
       // silent fallback
     }
   }
@@ -118,7 +148,7 @@ class SoundEngine {
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.06);
-    } catch (e) {
+    } catch {
       // silent fallback
     }
   }

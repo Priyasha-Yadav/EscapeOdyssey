@@ -16,9 +16,9 @@ import {
   Moon,
   X
 } from 'lucide-react';
-import { useTrip } from '../context/TripContext';
-import { MOOD_OPTIONS, TRAVEL_HUBS } from '../data/destinations';
-import type { MoodTag } from '../types';
+import { useTrip } from '../../../hooks/useTrip';
+import { MOOD_OPTIONS, TRAVEL_HUBS } from '../../../data/destinations';
+import type { MoodTag } from '../../../types';
 
 export const HeroSection: React.FC = () => {
   const { filters, setFilters, filteredDestinations } = useTrip();

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Compass, Sparkles, Bookmark, MapPin, ChevronDown, Volume2, VolumeX, Layers, Sun, Moon, Monitor } from 'lucide-react';
-import { useTrip } from '../context/TripContext';
-import { CURRENCY_OPTIONS, TRAVEL_HUBS } from '../data/destinations';
-import type { CurrencyCode, ThemeMode } from '../types';
+import { useTrip } from '../../hooks/useTrip';
+import { CURRENCY_OPTIONS, TRAVEL_HUBS } from '../../data/destinations';
+import type { CurrencyCode, ThemeMode } from '../../types';
 
 interface NavbarProps {
   onOpenSavedDrawer: () => void;

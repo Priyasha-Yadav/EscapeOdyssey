@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Bookmark, Trash2, Share2, Sparkles, Clock } from 'lucide-react';
-import { useTrip } from '../context/TripContext';
-import { DESTINATIONS } from '../data/destinations';
+import { useTrip } from '../../../hooks/useTrip';
+import { DESTINATIONS } from '../../../data/destinations';
 
 interface SavedTripsDrawerProps {
   isOpen: boolean;

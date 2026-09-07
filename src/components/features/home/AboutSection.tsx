@@ -18,7 +18,6 @@ export const AboutSection: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
         {/* Step 1 */}
         <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 space-y-4 relative overflow-hidden group hover:border-emerald-500/40 transition-all">
           <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-extrabold text-lg border border-emerald-500/30">
@@ -63,7 +62,6 @@ export const AboutSection: React.FC = () => {
             <span>Instant Printable Pass</span>
           </div>
         </div>
-
       </div>
     </section>
   );
